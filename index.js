@@ -6,27 +6,44 @@ var es        = require('event-stream'),
     crypto    = require('crypto'),
     path      = require('path'),
     slash     = require('slash'),
+    appRoot = require('app-root-path'),
     lineBreak = '\n';
 
-function manifest(options) {
+function zabcache(options) {
   options = options || {};
   var contents = [];
+  var firstline = "# ";
   contents.push('CACHE MANIFEST');
 
   var filename = options.filename || 'app.manifest';
   var exclude = [].concat(options.exclude || []);
   var hasher = crypto.createHash('sha256');
 
+
+
+  if(options.addpkgversion){
+    var pkg = require(appRoot + '/package.json');
+    firstline = firstline + pkg.name + " version:" + pkg.version;
+  }
+
   if (options.timestamp) {
-    contents.push('# Time: ' + new Date());
+    firstline = firstline +  " " +new Date();
   }
 
   if (options.revision) {
-    contents.push('# Revision: ' + options.revision);
+    firstline = firstline +  " " +options.revision;
   }
+
+  contents.push(firstline);
 
   contents.push(lineBreak);
   contents.push('CACHE:');
+
+  if (options.fileList) {
+    for (var i in options.fileList) {
+      contents.push(options.fileList[i]);
+    }
+  }
 
   function writeToManifest(file) {
     if (file.isNull())   return;
@@ -96,4 +113,4 @@ function manifest(options) {
   return through(writeToManifest, endStream);
 }
 
-module.exports = manifest;
+module.exports = zabcache;

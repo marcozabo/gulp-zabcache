@@ -1,23 +1,16 @@
-# gulp-manifest 
-> Generate HTML5 Cache Manifest files. Submitted by [Scott Hillman](https://github.com/hillmanov/).
+# gulp-zabcache 
+> Forked from: https://github.com/Sharique-Hasan/gulp-appcache
 
 ## Editing
 
-Many thanks to Scott Hillman who developed [grunt-manifest](https://github.com/hillmanov/gulp-manifest) for gulpjs. I made few changes in the plugin to support the relative path of the file which are to be cahched.
-
-Big thanks to [Gunther Brunner](https://github.com/gunta/) for writing the [grunt-manifest](https://github.com/gunta/grunt-manifest) plugin. This plugin was heavily influenced by his great work. 
-
-Visit the [HTML 5 Guide to AppCache](http://www.html5rocks.com/en/tutorials/appcache/beginner/) for more information on Cache Manifest files.
+Many thanks to Sharique-Hasan who developed [gulp-appcache](https://github.com/Sharique-Hasan/gulp-appcache) for gulpjs. I made few changes in the plugin to put project version in manifest and handle explicit file lists
+ 
 
 ## Usage
 
 ```shell
 npm install gulp-appcache
 ```
-
-## API
-
-### Parameters
 
 ### manifest(options)
 
@@ -27,6 +20,11 @@ This controls how this task (and its helpers) operate and should contain key:val
 Type: `String`
 
 Adds the relative path to the file to be caches with hash working as previous.
+
+#### options.addpkgversion
+Type: `boolean`
+
+Adds the name and version of your project, taken from your package.json 
 
 #### options.filename
 Type: `String`  
@@ -43,6 +41,12 @@ Type: `String` `Array`
 Default: `undefined`  
 
 Exclude specific files from the Cache Manifest file.
+
+#### options.fileList
+Type: `String` `Array`  
+Default: `undefined` 
+
+Adds a list of files in CACHE section
 
 #### options.network
 Type: `String` `Array`  
@@ -90,10 +94,12 @@ This will ensure that application cache invalidates whenever actual file content
     gulp.task('manifest', function(){
       gulp.src(['../client/resources/build/**/*'])
         .pipe(manifest({
-	  relativePath: '/resources/build'
+	        relativePath: '/resources/build'
           hash: true,
           preferOnline: true,
           network: ['http://*', 'https://*', '*'],
+          addpkgversion: true,
+          filelist: ['abc.css', '/lib/cordova.js'],
           filename: 'app.manifest',
           exclude: 'app.manifest'
          }))

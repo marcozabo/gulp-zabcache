@@ -1,6 +1,6 @@
 {
-  "name": "gulp-appcache",
-  "version": "0.0.4",
+  "name": "gulp-zabcache",
+  "version": "0.0.1",
   "description": "Generate HTML5 Cache Manifest files with relative path",
   "main": "index.js",
   "scripts": {
@@ -10,19 +10,21 @@
     "gulp",
     "gulpplugin",
     "html5",
-    "manifest"
+    "manifest",
+    "appcache",
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Sharique-Hasan/gulp-appcache"
+    "url": "https://github.com/marcozabo/gulp-zabcache"
   },
-  "author": "Sharique Hasan",
+  "author": "marcozabo",
   "license": "MIT",
   "edited":"Sharique Hasan",
   "readmeFilename": "README.md",
   "devDependencies": {
     "should": "~2.1.1",
-    "mocha": "~1.16.2"
+    "mocha": "~1.16.2",
+    "app-root-path": "^1.0.0",
   },
   "dependencies": {
     "event-stream": "~3.0.20",
