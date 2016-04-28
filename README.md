@@ -9,7 +9,7 @@ Many thanks to Sharique-Hasan who developed [gulp-appcache](https://github.com/S
 ## Usage
 
 ```shell
-npm install gulp-appcache
+npm install gulp-zabcache
 ```
 
 ### manifest(options)
