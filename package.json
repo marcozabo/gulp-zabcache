@@ -1,36 +1,47 @@
 {
   "name": "gulp-zabcache",
-  "version": "0.0.2",
-  "description": "Generate HTML5 Cache Manifest files with relative path",
+  "version": "0.0.3",
+  "description": "Generate HTML5 Cache Manifest",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/mocha"
+    "test": "mocha"
   },
   "keywords": [
     "gulp",
     "gulpplugin",
     "html5",
     "manifest",
-    "appcache",
+    "appcache"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/marcozabo/gulp-zabcache"
+    "url": "git+https://github.com/marcozabo/gulp-zabcache.git"
   },
-  "author": "marcozabo",
+  "author": {
+    "name": "marcozabo"
+  },
   "license": "MIT",
-  "edited":"marcozabo",
+  "edited": "marcozabo",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "should": "~2.1.1",
-    "mocha": "~1.16.2",
     "app-root-path": "^1.0.0",
-    "gulp-replace": "^0.5.4"
+    "gulp-replace": "^0.5.4",
+    "mocha": "~1.16.2",
+    "should": "~2.1.1"
   },
   "dependencies": {
     "event-stream": "~3.0.20",
     "through": "~2.3.4",
     "gulp-util": "~2.2.6",
     "slash": "^0.1.1"
-  }
+  },
+  "readme": "# gulp-zabcache \n> Forked from: https://github.com/Sharique-Hasan/gulp-appcache\n\n## Editing\n\nMany thanks to Sharique-Hasan who developed [gulp-appcache](https://github.com/Sharique-Hasan/gulp-appcache) for gulpjs. I made few changes in the plugin to put project version in manifest, handle explicit file list and add manifest attribute in html tag\n \n\n## Usage\n\n```shell\nnpm install gulp-zabcache\n```\n\n### manifest(options)\n\nThis controls how this task (and its helpers) operate and should contain key:value pairs, see options below.\n\n#### options.relativePath\nType: `String`\n\nAdds the relative path to the file to be caches with hash working as previous.\n\n#### options.addpkgversion\nType: `boolean`\n\nAdds the name and version of your project, taken from your package.json \n\n#### options.filename\nType: `String`  \nDefault: `\"app.manifest\"`\n\nSet name of the Cache Manifest file.\n\n#### options.cache\n\nIt is not supported in this plugin as the hash does not change with in manifest file.\n\n#### options.exclude\nType: `String` `Array`  \nDefault: `undefined`  \n\nExclude specific files from the Cache Manifest file.\n\n#### options.fileList\nType: `String` `Array`  \nDefault: `undefined` \n\nAdds a list of files in CACHE section\n\n#### options.network\nType: `String` `Array`  \nDefault: `\"*\"` (By default, an online whitelist wildcard flag is added)   \n\nAdds a string to the **NETWORK** section.\n\nSee [here](http://diveintohtml5.info/offline.html#network) for more information.\n\n#### options.fallback\nType: `String` `Array`  \nDefault: `undefined`  \n\nAdds a string to the **FALLBACK** section.\n\nSee [here](http://diveintohtml5.info/offline.html#fallback) for more information.\n\n#### options.preferOnline\nType: `Boolean`   \nDefault: `undefined`\n\nAdds a string to the **SETTINGS** section, specifically the cache mode flag of the ```prefer-online``` state.\n\nSee [here](http://www.whatwg.org/specs/web-apps/current-work/multipage/offline.html#concept-appcache-mode-prefer-online) for more information.\n\n#### options.timestamp\nType: `Boolean`   \nDefault: `true` \n\nAdds a timestamp as a comment for easy versioning.\n\nNote: timestamp will invalidate application cache whenever cache manifest is rebuilt, even if contents of files in `src` have not changed.\n\n#### options.hash\nType: `Boolean`\nDefault: `false`\n\nAdds a sha256 hash of all `src` files (actual contents) as a comment.\n\nThis will ensure that application cache invalidates whenever actual file contents change (it's recommented to set `timestamp` to `false` when `hash` is used).\n\n#### options.indexfile\nType: `String`\nDefault: `undefined`\n\nset your index.html file if you want to add manifest attribute\n\n#### options.indexroot\nType: `String`\nDefault: `undefined`\n\nif index.html is not in the root of your project, set the path here\n\n### Usage Example\n\n\n    gulp.task('manifest', function(){\n      gulp.src(['../client/resources/build/**/*'])\n        .pipe(manifest({\n\t        relativePath: '/resources/build'\n          hash: true,\n          preferOnline: true,\n          network: ['http://*', 'https://*', '*'],\n          addpkgversion: true,\n          filelist: ['abc.css', '/lib/cordova.js'],\n          filename: 'app.manifest',\n          exclude: 'app.manifest'\n         }))\n        .pipe(gulp.dest('build'));\n    });\n\n\n### Output example\n\n    CACHE MANIFEST\n\n    CACHE:\n    /resources/build/js/app.js\n    /resources/build/css/style\n    /resources/build/css/style.css\n    /resources/build/js/zepto.min.js\n    /resources/build/js/script.js\n    /resources/build/some_files/index.html\n    /resources/build/some_files/about.html\n\n    NETWORK:\n    http://*\n    https://*\n    *\n\n    # hash: 76f0ef591f999871e1dbdf6d5064d1276d80846feeef6b556f74ad87b44ca16a\n\n\nYou do need to be fully aware of standard browser caching.\nIf the files in **CACHE** are in the network cache, they won't actually update,\nsince the network cache will spit back the same file to the application cache.\nTherefore, it's recommended to add a hash to the filenames's, akin to rails or yeoman. See [here](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/) why query strings are not recommended.\n",
+  "gitHead": "7b79a242fb5a544e71691d851489dd30f736791a",
+  "bugs": {
+    "url": "https://github.com/marcozabo/gulp-zabcache/issues"
+  },
+  "homepage": "https://github.com/marcozabo/gulp-zabcache#readme",
+  "_id": "gulp-zabcache@0.0.2",
+  "_shasum": "a9babdace181fb50e03970cd3d7f3678d80bb65d",
+  "_from": "gulp-zabcache@latest"
 }
