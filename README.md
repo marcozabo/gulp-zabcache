@@ -3,7 +3,7 @@
 
 ## Editing
 
-Many thanks to Sharique-Hasan who developed [gulp-appcache](https://github.com/Sharique-Hasan/gulp-appcache) for gulpjs. I made few changes in the plugin to put project version in manifest and handle explicit file lists
+Many thanks to Sharique-Hasan who developed [gulp-appcache](https://github.com/Sharique-Hasan/gulp-appcache) for gulpjs. I made few changes in the plugin to put project version in manifest, handle explicit file list and add manifest attribute in html tag
  
 
 ## Usage
@@ -87,6 +87,18 @@ Default: `false`
 Adds a sha256 hash of all `src` files (actual contents) as a comment.
 
 This will ensure that application cache invalidates whenever actual file contents change (it's recommented to set `timestamp` to `false` when `hash` is used).
+
+#### options.indexfile
+Type: `String`
+Default: `undefined`
+
+set your index.html file if you want to add manifest attribute
+
+#### options.indexroot
+Type: `String`
+Default: `undefined`
+
+if index.html is not in the root of your project, set the path here
 
 ### Usage Example
 

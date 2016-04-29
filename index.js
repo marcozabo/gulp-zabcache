@@ -7,6 +7,7 @@ var es        = require('event-stream'),
     path      = require('path'),
     slash     = require('slash'),
     appRoot = require('app-root-path'),
+    gulp = require('gulp'),
     lineBreak = '\n';
 
 function zabcache(options) {
@@ -15,7 +16,7 @@ function zabcache(options) {
   var firstline = "# ";
   contents.push('CACHE MANIFEST');
 
-  var filename = options.filename || 'app.manifest';
+  var filename = options.filename || 'manifest.appcache';
   var exclude = [].concat(options.exclude || []);
   var hasher = crypto.createHash('sha256');
 
@@ -32,6 +33,18 @@ function zabcache(options) {
 
   if (options.revision) {
     firstline = firstline +  " " +options.revision;
+  }
+
+  if (options.indexfile) {
+    if(!options.indexroot)options.indexroot = "";
+
+    var  replace = require('gulp-replace')
+         ,indexpath = options.indexroot + "/" + options.indexfile;
+
+    gulp.src([indexpath])
+      .pipe(replace('<html', '<html manifest="' + options.filename + '"'))
+      .pipe(gulp.dest(options.indexroot));
+
   }
 
   contents.push(firstline);

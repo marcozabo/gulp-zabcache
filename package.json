@@ -1,6 +1,6 @@
 {
   "name": "gulp-zabcache",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generate HTML5 Cache Manifest files with relative path",
   "main": "index.js",
   "scripts": {
@@ -19,12 +19,13 @@
   },
   "author": "marcozabo",
   "license": "MIT",
-  "edited":"Sharique Hasan",
+  "edited":"marcozabo",
   "readmeFilename": "README.md",
   "devDependencies": {
     "should": "~2.1.1",
     "mocha": "~1.16.2",
     "app-root-path": "^1.0.0",
+    "gulp-replace": "^0.5.4"
   },
   "dependencies": {
     "event-stream": "~3.0.20",
