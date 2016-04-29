@@ -1,6 +1,6 @@
 {
   "name": "gulp-zabcache",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Generate HTML5 Cache Manifest",
   "main": "index.js",
   "scripts": {
@@ -30,6 +30,8 @@
     "should": "~2.1.1"
   },
   "dependencies": {
+    "app-root-path": "^1.0.0",
+    "gulp-replace": "^0.5.4",
     "event-stream": "~3.0.20",
     "through": "~2.3.4",
     "gulp-util": "~2.2.6",
@@ -41,7 +43,7 @@
     "url": "https://github.com/marcozabo/gulp-zabcache/issues"
   },
   "homepage": "https://github.com/marcozabo/gulp-zabcache#readme",
-  "_id": "gulp-zabcache@0.0.2",
-  "_shasum": "a9babdace181fb50e03970cd3d7f3678d80bb65d",
+  "_id": "gulp-zabcache@0.0.3",
+  "_shasum": "7a9c8db3103fe971a58836adeee2c848f8b3d3a3",
   "_from": "gulp-zabcache@latest"
 }
