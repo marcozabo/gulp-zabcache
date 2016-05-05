@@ -6,6 +6,9 @@
   "scripts": {
     "test": "mocha"
   },
+  "publishConfig": {
+    "registry": "http://registry.npmjs.org"
+  },
   "keywords": [
     "gulp",
     "gulpplugin",
