@@ -1,6 +1,6 @@
 {
   "name": "gulp-zabcache",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Generate HTML5 Cache Manifest",
   "main": "index.js",
   "scripts": {
